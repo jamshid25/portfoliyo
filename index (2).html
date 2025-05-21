@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bola tarbiyasi uchun ota-onalarga yordamchi</title>
+    <link rel="stylesheet" href="syle 2.css">
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Tarbiyaviy yo‘nalishlar menyusi */
+        .tarbiya-nav {
+            background-color: #28a745;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+/* Tarbiyaviy yo'nalishlar menyusi uchun dizayn */
+.tarbiya-nav {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tarbiya-nav a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.tarbiya-nav a:hover {
+    background-color: #5c6bc0;
+    color: white;
+}
+
+        .tarbiya-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 5px 10px;
+            padding: 8px 16px;
+            background-color: #34c759;
+            border-radius: 5px;
+        }
+
+        .tarbiya-nav a:hover {
+            background-color: #1e7e34;
+        }
+
+        nav {
+            background-color: #0056b3;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 5px 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #003f7f;
+        }
+        /* Tarbiyaviy yo'nalishlar menyusi */
+.tarbiya-nav {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tarbiya-nav a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.tarbiya-nav a:hover {
+    background-color: #5c6bc0;
+    color: white;
+}
+
+    .age-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .age-nav a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: transform 0.3s, background-color 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .age-nav a:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+
+
+        section {
+            padding: 20px;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 15px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .poll, .comments {
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .poll h3, .comments h3 {
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        let selectedCategory = null;
+
+    // Kategoriya tanlanganda chaqiriladi
+    function selectCategory(category) {
+        selectedCategory = category;
+        document.querySelector('.age-nav').style.display = 'flex';
+    }
+
+    // Yosh toifasini tanlanganda sahifani ko‘rsatadi
+    function showSection(ageGroup) {
+        if (!selectedCategory) {
+            alert("Avval tarbiyaviy yo'nalishni tanlang!");
+            return;
+        }
+
+        // Hamma section'larni yashirish
+        const sections = document.querySelectorAll("section");
+        sections.forEach(section => section.classList.remove("active"));
+
+        // Faqat kerakli section'ni ko‘rsatish
+        const sectionId = selectedCategory + '-' + ageGroup;
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.classList.add("active");
+        } else {
+            alert("Bu kategoriya va yosh toifasi uchun ma'lumot mavjud emas.");
+        }
+    }
+         
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Bola tarbiyasi uchun ota-onalarga yordamchi</h1>
+    <img src="https://api.moiti.uz/media/news/unnamed_ryG2BXI.jpeg" alt="">
+</header>
+
+<!-- Tarbiyaviy yo'nalishlar menyusi -->
+<div class="tarbiya-nav">
+    <a onclick="selectCategory('psixologik')">Psixologiyasi</a>
+    <a onclick="selectCategory('aqliy')">Aqliy faoliyati</a>
+    <a onclick="selectCategory('jismoniy')">Jismoniy holati</a>
+    <a onclick="selectCategory('ovqatlanishi')">Ovqatlanish retsepti</a>
+    <a onclick="selectCategory('qiziqish')">Bola qiziqishlari</a>
+</div>
+
+<!-- Yosh toifalari menyusi -->
+<div class="age-nav" style="display: none;">
+    <a onclick="showSection('1to3')">1–3 yosh</a>
+    <a onclick="showSection('4to6')">4–6 yosh</a>
+    <a onclick="showSection('7to10')">7–10 yosh</a>
+    <a onclick="showSection('11to14')">11–14 yosh</a>
+    <a onclick="showSection('15to18')">15–18 yosh</a>
+</div>
+<!-- Ma'lumotlar -->
+<section id="psixologik-1to3">
+    <h2>Psixologiyasi (1–3 yosh)</h2>
+    <img src="https://asab.cc/uploads/posts/2021-04/1617710256_image.jpg" alt="">
+    <p>Injiqlik va his-tuyg‘ularni boshqarolmaslik, qo‘rquvlar paydo bo‘lishi, ijtimoiylikka ilk qadamlar, taqlid qilish va kuzatuvchanlik, tushunish tez o‘sadi, lekin ifoda qilish sust bo‘lishi mumkin.</p>
+</section>
+<section id="psixologik-4to6">
+    <h2>Psixologiyasi  (4–6 yosh)</h2>
+    <img src="https://proza.uz/files/default/033f2215-2106-4fff-b8b5-b70a0806eb5a" alt="">
+    <p>Bu davrda bolalar tez rivojlanadi, tilni rivojlantiradi, o‘zining shaxsiyati va atrof-muhitni tushunishni boshlaydi. Kognitiv rivojlanishda tasavvur va mantiqiy fikrlashni o‘rganadilar. Emotsional va ijtimoiy rivojlanishning bosqichi bo‘lib, ular jamiyatdagi o‘z o‘rinlarini anglay boshlaydi va do‘stlar bilan munosabatlarni o‘rnatishadi. O‘yin orqali o‘zlarini ifodalashadi va ko‘pincha "men" tushunchasini shakllantiradilar.</p>
+</section>
+
+<section id="psixologik-7to10">
+    <h2>Psixologiyasi (7–10 yosh)</h2>
+    <img src="https://ubsu.uz/storage/posts/01JMH6ZMC2GYPR4X5NM9P0K13K.jpg" alt="">
+    <p>Kognitiv rivojlanish yanada chuqurlashadi, bolalar mantiqiy fikrlash va o‘rganishga ko‘proq qiziqadilar. O‘z-o‘zini anglash va o‘z xulq-atvorini boshqarish qobiliyati rivojlanadi. Ijtimoiy munosabatlarda ko‘proq do‘stlar orttirishadi, guruhda ishlash va jamoada o‘rni borligini anglay boshlaydilar. Emotsional jihatdan barqarorlikka erishishadi, lekin ba’zida g‘azab yoki qiziqish kabi his-tuyg‘ularni boshqarishda qiyinchiliklarga duch kelishadi.</p>
+</section>
+<section id="psixologik-11to14">
+    <h2>Psixologiyasi (11–14 yosh)</h2>
+    <img src="https://storage.kun.uz/source/9/4QvgnnK7gwU2HPm-WVzyylQdPVKGCPMA.jpeg" alt="">
+    <p>Kognitiv rivojlanish yuqori darajaga chiqadi, bolaning abstrakt fikrlash qobiliyati rivojlanadi. O‘rta maktab davrida bolalar o‘zining yuksak shaxsiyati va ijtimoiy pozitsiyasini o‘rganadilar, o‘zini boshqalardan farqlashga harakat qilishadi. Emotsional jihatdan o‘zini kashf etish jarayoni boshlanadi. Bu davrda o‘ziga nisbatan ishonch shakllanadi, lekin xurujlar va shaxsiy inqirozlar ham mumkin. Tashqi ko‘rinish va o‘ziga nisbatan baho qo‘yish ko‘payadi, shu bilan birga, oila va do‘stlar bilan munosabatlar muhim ahamiyat kasb etadi.</p>
+</section>
+<section id="psixologik-15to18">
+    <h2>Psixologiyasi (15–18 yosh)</h2>
+    <img src="https://aniq.uz/photos/news/LDDocFwm8BTAEwF.jpeg" alt="">
+    <p>Bu davrda shaxsiyatning shakllanishi to‘liq boshqariladi. Kognitiv jihatdan o‘ylash, qaror qabul qilish va muammolarni hal qilishda aniqroq va murakkabroq qarorlar qabul qilish mumkin. Emotsional jihatdan bu yoshda katta o‘zgarishlar yuz beradi, hissiy izlanishlar, sevgilar, kelajak haqidagi o‘ylashlar va shaxsiy qadr-qimmatni anglash o‘sadi. Ijtimoiy jihatdan ularning do‘stliklari, sevgisi, o‘zaro munosabatlar juda muhim bo‘ladi. Shuningdek, mustaqillikka erishish va o‘z hayotini boshqarishga intilish kuchayadi. Shaxsiyatning mustahkamlanishi va kelajakdagi maqsadlarni aniqlashda bu yoshda katta o‘zgarishlar ro‘y beradi.
+</section>
+<section id="aqliy-1to3">
+    <h2>Aqliy faoliyati (1–3 yosh)</h2>
+    <img src="https://zamin.uz/uploads/posts/2025-01/728x486_1_a9a1c2bfdc7e7a4022a1d7151d70e4321000x667_0xursqgar0_9024415067125699882-oukrfdcv.webp" alt="">
+    <p>Bu yoshda bolalar atrof-muhitni asosan sezgilari orqali anglaydi. Ularning diqqatlari juda qisqa muddatli bo‘lib, faqat sezgir va jozibador narsalarga qaratiladi. Xotira ko‘proq hissiy holatlarga bog‘liq va eslab qolish jarayoni jonli taassurotlar bilan kechadi. Bola oddiy narsalarni o‘rganadi, takrorlash orqali o‘zlashtiradi. Fikrlashi harakat asosida shakllanadi, tasavvuri esa tasviriy va sodda bo‘ladi.</p>
+</section>
+
+<section id="aqliy-4to6">
+    <h2>Aqliy faoliyati (4–6 yosh)</h2>
+    <img src="https://uz24.uz/uploads/image/9fa8928c270076c0ef75e4182d8266b4/thumbnail.jpg" alt="">
+    <p>Bu davrda bola sezgi orqali idrok qilish bilan birga, buyumlarning rang, shakl va o‘lchamlarini ajrata boshlaydi. Diqqat 5–10 daqiqa davom etadi, xotirasi esa she’r va hikoyalarni eslab qolish darajasigacha rivojlanadi. Tasavvuri kengayadi, rolli o‘yinlar orqali fantaziyasi kuchayadi. Fikrlash tasviriy-mantiqiy shaklga o‘tadi, bolaning savollari ko‘payadi – bu uning bilishga bo‘lgan qiziqishidan dalolat beradi.</p>
+</section>
+<section id="aqliy-7to10">
+    <h2>Aqliy faoliyati (7–10 yosh)</h2>
+    <img src="https://storage.kun.uz/source/10/ROxXrM2zduEo3YLSWUeMkpGkNX5zZND3.jpg" alt="">
+    <p>Bu bosqichda bola murakkab hodisalarni tahlil qilish, tafsilotlarga e’tibor berish qobiliyatiga ega bo‘ladi. Diqqat 15–20 daqiqa davomida saqlanadi, darslarga e’tibori ortadi. Mantiqiy xotira rivojlanib, bola ma’noli axborotni yodlab qoladi. Tasavvuri real va fantastik fikrlarni ajrata olish darajasiga yetadi. Fikrlashi esa chuqurlashib, o‘rganilgan bilimlarni yangi vaziyatlarga moslashtira oladi.</p>
+</section>
+<section id="aqliy-11to14">
+    <h2>Aqliy faoliyati (11–14 yosh)</h2>
+    <img src="https://www.omonschool.uz/_next/image?url=%2Fimages%2Fhero-bg.jpg&w=3840&q=75" alt="">
+    <p>O‘smirlik davrida bolalarning aqliy faoliyati tez rivojlanadi. Abstrakt tushunchalarni anglash va murakkab mavzularni idrok qilish qobiliyati paydo bo‘ladi. Diqqatni uzoq saqlash, asosiy va ikkilamchi ma’lumotni ajratib olish osonlashadi. Mantiqiy fikrlash, tahlil qilish va baho berish kuchayadi. Tasavvur ijodiy fikr bilan uyg‘unlashadi, bu esa yozma ishlar va loyihalarda aks etadi.</p>
+</section>
+<section id="aqliy-15to18">
+    <h2>Aqliy faoliyati (15–18 yosh)</h2>
+    <img src="https://cdn1.img.sputniknews.uz/img/07e8/0b/12/46679397_93:0:2186:1570_1920x0_80_0_0_24527ee0655595a4c9aa2e8d435cc490.jpg" alt="">
+    <p>Bu bosqichda aqliy faoliyat yetuklikka yaqinlashadi. Mustaqil fikrlash, tahlil qilish, rejalashtirish, tanqidiy qarash va qaror qabul qilish ko‘nikmalari shakllanadi. Diqqat ancha barqaror va chuqur bo‘lib, bir nechta faoliyatni parallel bajarishga qodir bo‘ladi. Xotira yaxshi rivojlangan, axborotni maqsadli saqlash va kerakli vaqtda qayta ishlatish imkoniyati kuchli. Fikrlash abstrakt va mantiqiy asosda kechadi, ijodiy va analitik yondashuvlar shakllanadi.</p>
+</section>
+    <section id="jismoniy-1to3">
+    <h2>Jismoniy faoliyati (1–3 yosh)</h2>
+    <img src="https://cp.plan-baby.uz/media/CACHE/images/gapirish.a11c4dcf8257.webp" alt="">
+    <p>Bu davrda bola yurishni o‘rganadi, muvozanatni saqlash, yugurish, sakrash kabi asosiy harakat ko‘nikmalari shakllanadi. Mushaklari hali zaif, harakatlar noaniq va muvofiqlashtirish sust bo‘ladi. Bola faol harakatlanadi, bu orqali jismoniy rivojlanishi tezlashadi.</p>
+</section>
+<section id="jismoniy-4to6">
+    <h2>Jismoniy faoliyati (4–6 yosh)</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTksPMG8YTbhnpGG9vvKhLH2EHPZ60ttnqrhg&s" alt="">
+    <p>Bolaning harakatlari ancha muvofiqlashgan bo‘ladi. Yugurish, sakrash, to‘p o‘ynash, o‘rmalash kabi harakatlar ancha mukammallashadi. Mushaklar rivojlanadi, koordinatsiya yaxshilanadi. Bola o‘z harakatlarini nazorat qila boshlaydi, tana muvozanati yaxshilanadi.</p>
+</section>
+<section id="jismoniy-7to10">
+    <h2>Jismoniy faoliyati (7–10 yosh)</h2>
+    <img src="https://bolalarolami.uz/_ipx/f_webp&q_80/unsplash/3840/conversions/1736229581-show_card.jpg" alt="">
+    <p>Bu davrda bola jismonan faollashadi, sport turlari bilan shug‘ullanishga qiziqish paydo bo‘ladi. Mushaklar va suyaklar faol rivojlanadi, chidamlilik ortadi. Mayda va yirik motorika harakatlari aniq va muvofiqlashtirilgan bo‘ladi. Harakat koordinatsiyasi yaxshilanadi, sport mashg‘ulotlari samarali kechadi.</p>
+</section>
+<section id="jismoniy-11to14">
+    <h2>Jismoniy faoliyati (11–14 yosh)</h2>
+    <img src="https://cdn1.img.sputniknews.uz/img/952/67/9526723_0:17:1200:692_1920x0_80_0_0_b990a9165b3dfe7f2d7e57f432f2c2f1.jpg" alt="">
+<p>O‘smirlik davrining boshlanishi bilan organizmda o‘sish sur’atlari kuchayadi. Bo‘y o‘sishi, vazn ortishi va mushak massasining ko‘payishi kuzatiladi. Gormonlar ta’sirida tana tuzilishi o‘zgaradi, jismoniy kuch ortadi, lekin muvozanat va harakat muvofiqligi vaqtincha notekis bo‘lishi mumkin.</p>
+</section>
+<section id="jismoniy-15to18">
+    <h2>Jismoniy faoliyati (15–18 yosh)</h2>
+    <img src="https://www.norma.uz/img/8d/a5/137b1b952567db3b013bb1094305.png" alt="Silhouettes of people engaging in various physical activities such as walking, running, and playing soccer, depicted in vibrant gradient colors transitioning from green to blue. The background is white, creating a lively and energetic atmosphere.">
+    <p>Bu davrda jismoniy rivojlanish deyarli yakunlanadi. Bo‘y va tana massasi barqarorlashadi. Mushak kuchi, chidamlilik, tezlik va harakat aniqligi yuqori darajaga yetadi. Yoshlar sportda yuqori natijalarga erishishga qodir bo‘ladi, o‘z jismoniy imkoniyatlarini anglaydi va mustaqil rivojlantirishga harakat qiladi.</p>
+</section>
+<section id="ovqatlanishi-1to3">
+    <h2>Ovqatlanish retsepti (1–3 yosh)</h2>
+    <img src="https://yuz.uz/imageproxy/1200x/https://yuz.uz/file/news/8d220b0ae8af06dbb387ae137191a5a4.jpg" alt="">
+    <p>Bu davrda bolaning ovqatlanishi ayniqsa muhim, chunki organizm faol o‘sish va rivojlanish jarayonida bo‘ladi. Ovqatlar yengil, yaxshi hazm bo‘ladigan va allergik bo‘lmagan bo‘lishi kerak. Kunning davomida 5 mahal ovqat tavsiya etiladi. Ratsionga sabzavotli pyure, sut mahsulotlari, go‘shtli bo‘tqalar kiradi. Masalan, kartoshka, sabzi va guruchdan tayyorlangan pyurega oz miqdorda qaynatilgan go‘sht qo‘shilishi mumkin.</p>
+</section>
+<section id="ovqatlanishi-4to6">
+ <h2>Ovqatlanish retsepti (4–6 yosh)</h2>
+ <img src="https://daryo.uz/cache/2022/10/medium-photo_2022-10-02_04-34-10-960x530.jpg" alt="">
+ <p>Bu davrda bolalar ko‘proq harakatda bo‘lib, ko‘proq energiya sarflaydi. Ovqatlanish tartibli bo‘lishi, me’yorida oqsil, uglevod, yog‘lar, vitaminlar va minerallarni qamrab olishi kerak. Kalsiy va D vitamini bolalarning suyaklari va tishlari uchun juda muhim. Tvorogli bananli pankeyk, sabzavotli sho‘rvalar, mevalar asosiy menyuda bo‘lishi kerak.</p>
+    </section>
+<section id="ovqatlanishi-7to10">
+    <h2>Ovqatlanish retsepti (7–10 yosh)</h2>
+    <img src="https://back.avitsenna.uz/uploads/2017/01/bolalar-ovqatlanishi.jpg" alt="">
+    <p>Boshlang‘ich maktab yoshi bolaning fikrlashi va jismoniy faolligi oshadigan davr. Bu davrda bolaga to‘yimli nonushta, sabzavotli taomlar, go‘sht va sut mahsulotlari juda zarur. Makaron, sabzavot va qaynatilgan go‘shtdan iborat oddiy ovqatlar bolaning energiya ehtiyojini qoplaydi. Kunning o‘rtasida mevali yoki yong‘oqli yengil ovqatlar ham foydalidir.</p>
+</section>
+<section id="ovqatlanishi-11to14">
+    <h2>Ovqatlanish retsepti (11–14 yosh)</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0gmWcyuLMoFV0gNSSTqZmACODibf527FMww&s" alt="">
+    <p>O‘smirlik davrining boshlanishida organizmda katta o‘zgarishlar ro‘y beradi. Shu sababli organizmga ko‘p miqdorda oqsil, temir, rux va vitaminlar kerak bo‘ladi. Nonushta, tushlik va kechki ovqat qat’iy rejim asosida bo‘lishi lozim. Ovqat tarkibida baliq, tuxum, sabzavot, don mahsulotlari bo‘lishi tavsiya etiladi. Sutli bo‘tqalar, go‘shtli sabzavotli taomlar yaxshi variant sanaladi.</p>
+    </section>
+<section id="ovqatlanishi-15to18">
+    <h2>Ovqatlanish retsepti (15–18 yosh)</h2>
+    <img src="https://zira.uz/wp-content/uploads/2020/07/invento-7.jpg" alt="">
+    <p>Bu yoshda jismoniy o‘sish deyarli tugallanadi, lekin aqliy va emotsional jihatdan faol rivojlanish davom etadi. O‘smirlar ko‘pincha ovqatlanishni o‘tkazib yuborishga moyil bo‘lishadi, shuning uchun ular uchun mazali va foydali, ayni vaqtda tez tayyorlanadigan ovqatlar zarur. Ratsionda oqsilga boy mahsulotlar (go‘sht, baliq, tuxum), murakkab uglevodlar (jigar rang non, guruch), va vitaminlarga boy sabzavotlar bo‘lishi kerak. Salatlar, sho‘rvalar, go‘shtli sendvichlar yoki smuzi foydali tanlovdir.</p>
+    </section>
+<section id="qiziqish-1to3">
+    <h2>Bola qiziqishlari (1–3 yosh)</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt192AXkxQWoTmYqWRsPICHYfvx3HgZFHgMw&s" alt="">
+    <p>Bu davrda bola dunyoni asosan sezgi organlari orqali anglaydi. Ular rangli, ovoz chiqaruvchi va harakatlanadigan buyumlarga qiziqadi. Qiziqishlar asosan yangi narsalarni ko‘rish, ushlash, eshitish va harakat qilish bilan bog‘liq. Kattalarning harakatlarini kuzatish va taqlid qilish ularning eng sevimli faoliyatlaridan biri hisoblanadi.</p>
+    </section>
+<section id="qiziqish-4to6">
+    <h2>Bola qiziqishlari (4–6 yosh)</h2>
+    <img src="https://uzbaza.uz/wp-content/uploads/2021/07/bolani-oqishga-qiziqtirish-usullari.jpg" alt="">
+    <p>Bu davrda bolalarda rolli o‘yinlarga qiziqish kuchayadi. Ular “oila”, “shifokor”, “o‘qituvchi” kabi hayotiy rollarni o‘ynab, ijtimoiy dunyoni tushunishga harakat qiladi. Ranglar, shakllar, ertaklar va multfilmlarga qiziqish ortadi. San’at, musiqa, qo‘shiq aytish yoki rasm chizishga intilish boshlanadi.</p>
+    </section>
+<section id="qiziqish-7to10">
+    <h2>Bola qiziqishlari (7–10 yosh)</h2>
+    <img src="https://plan-baby.uz/_ipx/w_2020/https://cp.plan-baby.uz/media/CACHE/images/kak-motivirovat-rebyonka-na-uchyobu.bac2bec1e276.webp" alt="">
+    <p>Maktab boshlanishi bilan bolalarda bilim olishga bo‘lgan qiziqish shakllanadi. Tabiyat, texnika, geografiya, tarix kabi fanlarga qiziqish ortadi. O‘yinlar raqobatli tus oladi: sport, shaxmat, boshqotirmalar yoki kompyuter o‘yinlariga mehr qo‘yish mumkin. Do‘stlar bilan o‘zaro muloqot qilish, guruhda ishlash ularga zavq beradi.</p>
+   </section>
+<section id="qiziqish-11to14">
+    <h2>Bola qiziqishlari (11–14 yosh)</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdPPvt1Elo1G3UclOLCcqHzABJI-ATaf5Z9fi-VF_9YxyB2GtL2hFTLBATqlBZSGg6LcU&usqp=CAU" alt="">
+        <p>O‘smirlik davrining boshlanishi bilan shaxsiy qiziqishlar keskin rivojlanadi. Musiqa tinglash, musiqa asboblarida chalish, rasm chizish, adabiyot, yozuvchilik yoki fan sohalariga bo‘lgan qiziqish kuchayadi. Shaxsiy fikr, tanlov, mustaqil qarorlar orqali o‘zini izlash bosqichi boshlanadi. Ba’zi o‘smirlar IT, dasturlash, dizayn, sport yoki ijtimoiy tarmoqlarga qiziqadi.</p>
+    </section>
+<section id="qiziqish-15to18">
+    <h2>Bola qiziqishlari (15–18 yosh)</h2>
+    <img src="https://cdn.beta.qalampir.uz/uploads/7e/f_YCCS2L1UyxqnRgi1Wgy0WVC9P3D5WA.jpg" alt="">
+    <p>Bu yoshda o‘smirlar o‘z qiziqishlarini yanada aniqroq aniqlab olishadi. Kasb tanlash, hayotiy maqsadlar, ijodiy yoki ilmiy yo‘nalishlarga qiziqish paydo bo‘ladi. Kitob o‘qish, blog yuritish, videomontaj, dizayn, sportning aniq bir turi bilan shug‘ullanish – bular ularning eng ko‘p uchraydigan qiziqishlaridir. Do‘stlik, jamiyatdagi o‘rni, shaxsiy erkinlik va ijtimoiy mavzular ham muhim bo‘lib qoladi.</p>
+      </section> 
+      <!-- ABOUT SECTION -->
+<section id="about" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Biz haqimizda</h2>
+    <!-- ... -->
+  </div>
+</section>
+
+<!-- SHU YERGA SOROVNOMA VA IZOH QISMINI QO'SHING -->
+<!-- PASTDA QO'YILGAN KODNI TO'LIQ KO'CHIRING -->
+
+<div class="poll-section">
+  <h3>Farzandingizning sevimli mashg‘uloti qaysi?</h3>
+  <form id="pollForm">
+    <label><input type="radio" name="hobby" value="Rasm chizish"> Rasm chizish</label><br>
+    <label><input type="radio" name="hobby" value="Musiqa"> Musiqa</label><br>
+    <label><input type="radio" name="hobby" value="Sport"> Sport</label><br>
+    <label><input type="radio" name="hobby" value="Kompyuter o‘yinlari"> Kompyuter o‘yinlari</label><br><br>
+    <button type="button" onclick="submitPoll()">Yuborish</button>
+  </form>
+  <div id="pollResult" style="margin-top:10px;"></div>
+</div>
+
+<hr>
+
+<div class="comment-section">
+  <h3>Izoh qoldiring:</h3>
+  <textarea id="commentText" rows="4" cols="50" placeholder="Izohingizni yozing..."></textarea><br>
+  <button onclick="submitComment()">Yuborish</button>
+  <div id="commentList" style="margin-top:10px;"></div>
+</div>
+
+<style>
+  .poll-section, .comment-section {
+    margin: 30px auto;
+    max-width: 600px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #commentList p {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 0;
+  }
+</style>
+
+<script>
+  function submitPoll() {
+    const pollForm = document.getElementById("pollForm");
+    const selected = pollForm.querySelector('input[name="hobby"]:checked');
+    const result = document.getElementById("pollResult");
+    
+    if (selected) {
+      result.innerHTML = `<strong>Rahmat!</strong> Sizning tanlovingiz: <em>${selected.value}</em>`;
+    } else {
+      result.innerHTML = "<span style='color:red;'>Iltimos, birini tanlang.</span>";
+    }
+  }
+
+  function submitComment() {
+    const text = document.getElementById("commentText").value.trim();
+    const list = document.getElementById("commentList");
+
+    if (text !== "") {
+      const p = document.createElement("p");
+      p.textContent = text;
+      list.appendChild(p);
+      document.getElementById("commentText").value = "";
+    } else {
+      alert("Iltimos, izoh yozing.");
+    }
+  }
+</script>
+ 
+    <footer>
+        <p><strong>Maslahat:</strong> Abdurauf Fitratning "Oila" asarini o‘qishni tavsiya qilamiz. Bu asar oilaviy qadriyatlarni va tarbiyani chuqur o‘rganishga yordam beradi.</p>
+</footer>
+
+
+</body>
+</html>

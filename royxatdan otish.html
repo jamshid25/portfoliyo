@@ -1,0 +1,107 @@
+        <!DOCTYPE html>
+        <html lang="uz">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Ro‘yxatdan o‘tish</title>
+            <link rel="stylesheet" href="style.css">
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f9;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                }
+
+                section#registration {
+                    background-color: #ffffff;
+                    padding: 20px 30px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    width: 100%;
+                    max-width: 400px;
+                }
+
+                h2 {
+                    text-align: center;
+                    color: #333333;
+                }
+
+                label {
+                    font-weight: bold;
+                    color: #555555;
+                }
+
+                input, select, button {
+                    width: 100%;
+                    padding: 10px;
+                    margin: 10px 0;
+                    border: 1px solid #cccccc;
+                    border-radius: 5px;
+                    font-size: 14px;
+                }
+
+                input:focus, select:focus {
+                    border-color: #007bff;
+                    outline: none;
+                }
+
+                button {
+                    background-color: #007bff;
+                    color: #ffffff;
+                    border: none;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+
+                button:hover {
+                    background-color: #0056b3;
+                }
+
+                .form-group {
+                    margin-bottom: 15px;
+                }
+            </style>
+        </head>
+        <body>
+        <script src="script.js"></script>
+            <section id="registration">
+                <h2>Ro‘yxatdan o‘tish formasi</h2>
+                <form method="get" action="avtorizatsiya.html">
+                    <div class="form-group">
+                        <label for="name">Ism Familiya:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Parol:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Tug‘ilgan sana:</label>
+                        <input type="date" id="dob" name="dob">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Jinsi:</label>
+                        <select id="gender" name="gender">
+                            <option value="male">Erkak</option>
+                            <option value="female">Ayol</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Ro‘yxatdan o‘tish</button>
+                </form>
+            </section>
+        </body>
+        </html>
